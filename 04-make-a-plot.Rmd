@@ -1,0 +1,13 @@
+---
+title: "03-make-a-plot"
+author: "Candace Savonen"
+date: "2023-08-29"
+output: html_document
+---
+
+
+# The dataset is from https://www.kaggle.com/datasets/jkraak/lego-sets-and-themes-database
+
+```{r}
+lego_df <- readr::read_tsv(file.path("data", "raw-data", "lego_sets_and_themes.csv"))
+```
