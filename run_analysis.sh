@@ -14,3 +14,4 @@ sh 03-bash_test.sh
 
 ## Run a fourth step
 Rscript -e "rmarkdown::render('04-make-a-plot.Rmd')"
+
