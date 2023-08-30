@@ -1,15 +1,14 @@
 
-name: Spellcheck README Action
+name: Spell Checker
 
-on:
-  pull_request:
-    branches: [ main, staging ]
+on: push
 
 jobs:
   spell-check:
-    name: Check spelling
-    uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
-    with:
-      check_type: spelling
-      error_min: 3
-      gh_pat: secrets.GH_PAT
+    runs-on: ubuntu-latest
+    steps:
+      - uses: wow-actions/spell-checker@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          include: |
+            **/*.md
