@@ -16,17 +16,21 @@ jobs:
       - name: Checkout files
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          ref: ${{ github.ref }}
 
       - name: Run styler on Rmd and R files
         run: Rscript -e "styler::style_file(list.files(pattern = 'Rmd$|R$', recursive = TRUE, full.names = TRUE));warnings()"
 
       - name: Commit styled files
         run: |
+
+          # Some config set up to establish creds
           git config --global --add safe.directory $GITHUB_WORKSPACE
           git config --global user.email "itcrtrainingnetwork@gmail.com"
           git config --global user.name "jhudsl-robot"
+
+          # Now commit the styled files
           git add \*.Rmd
           git add \*.R
-          git commit -m 'Style Rmds' || echo "No changes to commit"
+          git commit -m 'Style R files' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
