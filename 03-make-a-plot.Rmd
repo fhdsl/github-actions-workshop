@@ -19,6 +19,6 @@ lego_df <- readr::read_csv(file.path("data", "raw-data", "lego_sets_and_themes.c
 
 ```{r}
 ggplot(data = lego_df, aes(x = year_released, y = number_of_parts)) +
-  geom_point() + 
+  geom_point() +
   theme_minimal()
 ```
