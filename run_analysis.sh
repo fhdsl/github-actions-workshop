@@ -4,7 +4,7 @@
 ## Usage: To re-run this whole analysis, go to bash and
 
 ## Run the first step
-python "01-python_test.py"
+python3 "01-python_test.py"
 
 ## Run the second step
 Rscript "02-r_test.R"
