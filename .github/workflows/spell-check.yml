@@ -7,13 +7,9 @@ on:
 
 jobs:
   spell-check:
-    name: Spellcheck
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Spellcheck
-        uses: rojopolis/spellcheck-github-actions@0.33.1
+    name: Check spelling
+    uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
+    with:
+      check_type: spelling
+      error_min: 3
+      gh_pat: secrets.GH_PAT
