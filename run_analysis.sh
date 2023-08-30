@@ -3,6 +3,10 @@
 # This is a mock script that shows how you could have your whole analysis ran by one script call.
 ## Usage: To re-run this whole analysis, go to bash and
 
+# These specs will make sure that if one script fails this will fail the script
+set -e
+set -o pipefail
+
 ## Run the first step
 python3 "01-python_test.py"
 
