@@ -10,7 +10,7 @@ jobs:
     name: Re run analysis
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/base_ottr:main
+      image: jhudsl/ottr_python:main
 
     steps:
       - name: Checkout files
@@ -22,7 +22,7 @@ jobs:
         id: running
         run: |
           sh run_analysis.sh
-          
+
       - name: Check on re-run outcome
         if: steps.running.outcome != 'success'
         run: |
