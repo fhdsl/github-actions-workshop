@@ -5,7 +5,6 @@
 
 # These specs will make sure that if one script fails this will fail the script
 set -e
-set -o pipefail
 
 ## Run the first step
 python3 "01-python_test.py"
