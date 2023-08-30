@@ -1,14 +1,29 @@
 
-name: Styling GitHub Action 
+name: Styling R code GitHub Action
 
 on:
-  workflow_dispatch:
+  pull_request:
+    branches: [ main, staging ]
 
 jobs:
-  hello:
+  style-code:
+    name: Style code
     runs-on: ubuntu-latest
-    steps:
+    container:
+      image: jhudsl/base_ottr:main
 
-      # Delete the branch!
-      - name: Hello World
-        run: echo "hello world"
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Run styler
+        run: Rscript -e "styler::style_file(list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE));warnings()"
+
+      - name: Commit styled files
+        run: |
+          git config --system --add safe.directory "$GITHUB_WORKSPACE"
+          git add \*.Rmd
+          git commit -m 'Style Rmds' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"

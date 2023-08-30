@@ -1,14 +1,30 @@
 
-name: Styling GitHub Action 
+name: Re-run analysis
 
 on:
-  workflow_dispatch:
+  pull_request:
+    branches: [ main, staging ]
 
 jobs:
-  hello:
+  re-run:
+    name: Re run analysis
     runs-on: ubuntu-latest
-    steps:
+    container:
+      image: jhudsl/base_ottr:main
 
-      # Delete the branch!
-      - name: Hello World
-        run: echo "hello world"
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Run it
+        id: running
+        run: |
+          sh run_analysis.sh
+          
+      - name: Check on re-run outcome
+        if: steps.running.outcome != 'success'
+        run: |
+          echo Re-running status ${{steps.running.outcome}}
+          exit 1
