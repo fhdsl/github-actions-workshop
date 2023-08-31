@@ -28,7 +28,7 @@ jobs:
           cat spell_check_results.tsv
 
       - name: Archive spelling errors
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: spell-check-results
           path: spell_check_results.tsv
