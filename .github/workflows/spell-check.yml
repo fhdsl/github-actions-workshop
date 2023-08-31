@@ -4,7 +4,7 @@ name: Spell Checker
 
 on:
   pull_request:
-    branches: [ staging, master ]
+    branches: [ staging, main ]
 
 jobs:
   spell-check:
