@@ -12,14 +12,8 @@ root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 # Read in dictionary
 dictionary <- readLines(file.path(root_dir, 'components', 'dictionary.txt'))
 
-# Add mysterious emoji joining character
-dictionary <- c(dictionary, spelling::spell_check_text("⬇️")$word)
-
-# Only declare `.Rmd` files
-files <- list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)
-
-# Remove the template from the spell check
-files <- grep('template_example.Rmd', files, invert = TRUE, value = TRUE)
+# Only declare `.Rmd` or `.md` files
+files <- list.files(pattern = 'md$', recursive = TRUE, full.names = TRUE)
 
 # Run spell check
 sp_errors <- spelling::spell_check_files(files, ignore = dictionary) %>%
