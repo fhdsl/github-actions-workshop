@@ -1,0 +1,30 @@
+
+name: Re-run analysis
+
+on:
+  pull_request:
+    branches: [ main, staging ]
+
+jobs:
+  re-run:
+    name: Re run analysis
+    runs-on: ubuntu-latest
+    container:
+      image: jhudsl/ottr_python:main
+
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Run it
+        id: running
+        run: |
+          sh run_analysis.sh
+
+      - name: Check on re-run outcome
+        if: steps.running.outcome != 'success'
+        run: |
+          echo Re-running status ${{steps.running.outcome}}
+          exit 1

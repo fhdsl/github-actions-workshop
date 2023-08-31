@@ -1,0 +1,6 @@
+automagic
+downloaded
+Github
+lego
+RMarkdown
+Rmd

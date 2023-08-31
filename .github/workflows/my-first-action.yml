@@ -1,0 +1,14 @@
+
+name: Basic GitHub Action 
+
+on:
+  workflow_dispatch:
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Delete the branch!
+      - name: Hello World
+        run: echo "hello world"

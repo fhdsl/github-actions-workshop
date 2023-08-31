@@ -1,0 +1,24 @@
+---
+title: "03-make-a-plot"
+author: "Candace Savonen"
+date: "2023-08-29"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+```
+
+# The dataset is from https://www.kaggle.com/datasets/jkraak/lego-sets-and-themes-database
+
+```{r}
+lego_df <- readr::read_csv(file.path("data", "raw-data", "lego_sets_and_themes.csv"))
+```
+
+# Let's make a plot of the number of lego pieces included in sets over the years 
+
+```{r}
+ggplot(data = lego_df, aes(x = year_released, y = number_of_parts)) +
+  geom_point() +
+  theme_minimal()
+```
