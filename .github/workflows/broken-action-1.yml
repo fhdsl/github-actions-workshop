@@ -14,9 +14,10 @@ jobs:
 
       - name: Checkout files
         uses: actions/checkout@v3
-        
+
       - name: Upload file
         uses: actions/upload-artifact@v3
+        run: echo "Uploading the dictionary file"
         with:
           name: dictionary.txt
           path: utils/dictionary.txt

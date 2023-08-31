@@ -5,15 +5,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    name: Lint Code Base
+  run-script:
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/ottr_python:main
-
-    permissions:
-      contents: read
-      packages: read
+      image: rocker/r-base
 
     steps:
       - name: Checkout Code
