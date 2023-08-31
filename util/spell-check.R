@@ -1,3 +1,5 @@
+# Adapted from Alex's Lemonade Stand Foundation https://github.com/AlexsLemonade/refinebio-examples/blob/c43ca1575a96fea547eae0a58fd425c700bc615d/.github/workflows/style-and-sp-check.yml
+
 #!/usr/bin/env Rscript
 #
 # Run spell check and save results
@@ -16,7 +18,7 @@ dictionary <- c(dictionary, spelling::spell_check_text("⬇️")$word)
 # Only declare `.Rmd` files
 files <- list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)
 
-# Remove the template from the spell check 
+# Remove the template from the spell check
 files <- grep('template_example.Rmd', files, invert = TRUE, value = TRUE)
 
 # Run spell check

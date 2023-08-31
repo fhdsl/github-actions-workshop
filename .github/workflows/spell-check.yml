@@ -1,4 +1,4 @@
-# Adapted from Alex's Lemonade Stand Foundation https://github.com/AlexsLemonade/refinebio-examples/blob/staging/.github/workflows/style-and-sp-check.yml
+# Adapted from Alex's Lemonade Stand Foundation https://github.com/AlexsLemonade/refinebio-examples/blob/c43ca1575a96fea547eae0a58fd425c700bc615d/.github/workflows/style-and-sp-check.yml
 
 name: Spell Checker
 
