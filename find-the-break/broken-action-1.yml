@@ -1,5 +1,5 @@
 
-name: Styling GitHub Action 
+name: Broken Action 1 - Upload a file
 
 on:
   workflow_dispatch:
@@ -9,6 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      # Delete the branch!
       - name: Hello World
         run: echo "hello world"
+
+      - name: Upload file
+        uses: actions/upload-artifact@v2
+        with:
+          name: dictionary.txt
+          path: dictionary.txt
