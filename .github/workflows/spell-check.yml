@@ -23,7 +23,7 @@ jobs:
       - name: Run spell check
         id: spell_check_run
         run: |
-          results=$(Rscript "util/spell-check.R")
+          results=$(Rscript "utils/spell-check.R")
           echo "::set-output name=sp_chk_results::$results"
           cat spell_check_results.tsv
 
