@@ -12,6 +12,9 @@ jobs:
       - name: Hello World
         run: echo "hello world"
 
+      - name: Checkout files
+        uses: actions/checkout@v3
+        
       - name: Upload file
         uses: actions/upload-artifact@v3
         with:
