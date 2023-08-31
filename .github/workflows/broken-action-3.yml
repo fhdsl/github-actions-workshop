@@ -1,5 +1,5 @@
 
-name: Broken Action 3 - Super Linter
+name: Broken Action 3 - Run script
 
 on:
   workflow_dispatch:
