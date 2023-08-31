@@ -23,8 +23,8 @@ jobs:
       - name: Run spell check
         id: spell_check_run
         run: |
-          results=$(Rscript "utils/spell-check.R")
-          echo "::set-output name=sp_chk_results::$results"
+          sp_chk_results=$(Rscript "utils/spell-check.R")
+          echo "sp_chk_results=$sp_chk_results" >> $GITHUB_OUTPUT
           cat spell_check_results.tsv
 
       - name: Archive spelling errors
@@ -32,3 +32,8 @@ jobs:
         with:
           name: spell-check-results
           path: spell_check_results.tsv
+
+      # If there are too many spelling errors, this will stop the workflow
+      - name: Check spell check results - fail if too many errors
+        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
+        run: exit 1
