@@ -10,7 +10,7 @@ library(magrittr)
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 
 # Read in dictionary
-dictionary <- readLines(file.path(root_dir, 'components', 'dictionary.txt'))
+dictionary <- readLines(file.path(root_dir, "components", "dictionary.txt"))
 
 # Only declare `.Rmd` or `.md` files
 files <- list.files(pattern = 'md$', recursive = TRUE, full.names = TRUE)
@@ -25,4 +25,4 @@ sp_errors <- spelling::spell_check_files(files, ignore = dictionary) %>%
 write(nrow(sp_errors), stdout())
 
 # Save spell errors to file temporarily
-readr::write_tsv(sp_errors, 'spell_check_results.tsv')
+readr::write_tsv(sp_errors, "spell_check_results.tsv")
