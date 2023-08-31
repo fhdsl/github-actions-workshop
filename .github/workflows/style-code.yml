@@ -1,6 +1,7 @@
 
 name: Styling R code GitHub Action
 
+# Run this workflow when a pull request is opened or pushed to
 on:
   pull_request:
     branches: [ main, staging ]
@@ -8,21 +9,26 @@ on:
 jobs:
   style-code:
     runs-on: ubuntu-latest
+    # This image has R and basic R packages
     container:
       image: rocker/tidyverse:4.0.2
 
     steps:
+      # Need to get the files specific to our branch from our pull request
       - name: Checkout files
         uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
+      # Our docker image doesn't have this one package though so we'll install it
       - name: Install packages
         run: Rscript -e "install.packages('styler')"
 
+      # Here's the main thing we are running: styling R file code
       - name: Run styler on Rmd and R files
         run: Rscript -e "styler::style_file(list.files(pattern = 'Rmd$|R$', recursive = TRUE, full.names = TRUE));warnings()"
 
+      # We will automatically commit back our styled R files
       - name: Commit styled files
         run: |
 

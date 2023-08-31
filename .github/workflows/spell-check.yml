@@ -2,6 +2,7 @@
 
 name: Spell Checker
 
+# Run this workflow when a pull request is opened or pushed to.
 on:
   pull_request:
     branches: [ staging, main ]
@@ -9,14 +10,17 @@ on:
 jobs:
   spell-check:
     runs-on: ubuntu-latest
+    # We will run this on a Docker image so it has most of the things we need
     container:
       image: rocker/tidyverse:4.0.2
 
     steps:
+      # Need to get the files specific to our branch from our pull request
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
+      # Our docker image doesn't have this one package though so we'll install it
       - name: Install packages
         run: Rscript -e "install.packages('spelling')"
 
@@ -24,16 +28,20 @@ jobs:
         id: spell_check_run
         run: |
           sp_chk_results=$(Rscript "utils/spell-check.R")
+          # This is where we are going to store output from this step to the environment so we can retrieve it in a later step
           echo "sp_chk_results=$sp_chk_results" >> $GITHUB_OUTPUT
           cat spell_check_results.tsv
 
+      # We want to retrieve this file after this runs so we can see what spell check errors were detected
       - name: Archive spelling errors
         uses: actions/upload-artifact@v3
+        # These arguments underneath `with` are generally action specific so we have to check the documentation: https://github.com/marketplace/actions/upload-a-build-artifact
         with:
           name: spell-check-results
           path: spell_check_results.tsv
 
       # If there are too many spelling errors, this will stop the workflow
       - name: Check spell check results - fail if too many errors
+        # Here we are only going to through an error if there's more than 3 spell check errors detected
         if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
         run: exit 1
