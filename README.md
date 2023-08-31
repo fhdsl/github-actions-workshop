@@ -10,8 +10,8 @@ This repository contains some mock scripts and files to mimic what a code analys
 
 For the tutorial you will need two main folders:   
 
-- `sample-github-actions` - we walk through these first to get the idea of how GitHub actions are set up.
-- `find-the-break` - Intentionally broken GitHub actions that will give you good practice at troubleshooting GitHub actions
+- `activity-1-sample-github-actions` - we walk through these first to get the idea of how GitHub actions are set up.
+- `activity-2-find-the-break` - Intentionally broken GitHub actions that will give you good practice at troubleshooting GitHub actions
 
 Additionally, the `utils` folder has files that are referenced by some of the GitHub Actions. The `data` folder has a dataset that is utilized by the mock analysis files that are used for this tutorial.
 
