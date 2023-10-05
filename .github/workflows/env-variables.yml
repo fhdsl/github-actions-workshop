@@ -1,6 +1,6 @@
 
 # This is the name as it will be shown in GitHub
-name: Basic GitHub Action
+name: Environment Variables
 
 # Run this workflow when we press the button to run it
 on:
