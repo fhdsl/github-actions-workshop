@@ -1,0 +1,19 @@
+
+# This is the name as it will be shown in GitHub
+name: Basic GitHub Action
+
+# Run this workflow when we press the button to run it
+on:
+  workflow_dispatch:
+
+# These are the jobs we wanna do
+jobs:
+  # This is the name of this job
+  hello:
+    # This is the environment we are running this on
+    runs-on: ubuntu-latest
+    steps:
+
+      # Here's the code we want to run - its shell script
+      - name: Hello World
+        run: echo "hello world"
