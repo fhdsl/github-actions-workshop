@@ -1,0 +1,35 @@
+
+name: Re-run analysis
+
+# Run this workflow when a pull request is opened or pushed to.
+on:
+  pull_request:
+    branches: [ main, staging ]
+
+jobs:
+  re-run:
+    name: Re run analysis
+    runs-on: ubuntu-latest
+    # This image has python, R and other things we need to run our mock analysis
+    container:
+      image: jhudsl/ottr_python:main
+
+    steps:
+      # Need to get the files specific to our branch from our pull request
+      - name: Checkout files
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # We can call our main script then to re-run it to make sure it works
+      - name: Run it
+        id: running
+        run: |
+          sh run_analysis.sh
+
+      # We can have this double check that the last step was succesfully run
+      - name: Check on re-run outcome
+        if: steps.running.outcome != 'success'
+        run: |
+          echo Re-running status ${{steps.running.outcome}}
+          exit 1
