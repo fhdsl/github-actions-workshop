@@ -2,6 +2,7 @@
 name: Broken Action 1 - Upload a file
 
 on:
+  pull_request: 
   workflow_dispatch:
 
 jobs:
