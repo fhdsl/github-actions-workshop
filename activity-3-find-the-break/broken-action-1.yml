@@ -1,0 +1,24 @@
+
+name: Broken Action 1 - Upload a file
+
+on:
+  pull_request: 
+  workflow_dispatch:
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Hello World
+        run: echo "hello world"
+
+      - name: Checkout files
+        uses: actions/checkout@v3
+
+      - name: Upload file
+        uses: actions/upload-artifact@v3
+        run: echo "Uploading the dictionary file"
+        with:
+          name: dictionary.txt
+          path: utils/dictionary.txt
